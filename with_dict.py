@@ -3,7 +3,6 @@ class WithableDict(dict):
     def __enter__(self):
         self._context_withable = {}
         for k, v in self.items():
-            print globals()
             if k in globals():
                 self._context_withable[k] = globals()[k]
             exec('global {0};{0} = {1}'.format(k, v))
